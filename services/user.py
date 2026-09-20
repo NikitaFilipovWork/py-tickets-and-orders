@@ -19,7 +19,11 @@ def create_user(
     )
 
 
-def get_user(user_id: int) -> User:
+def get_user(
+    user_id: int | None = None, username: str | None = None
+) -> User:
+    if username:
+        return get_user_model().objects.get(username=username)
     return get_user_model().objects.get(id=user_id)
 
 
